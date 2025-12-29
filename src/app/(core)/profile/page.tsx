@@ -116,56 +116,6 @@ export default function Profile() {
           <div className="mx-5">
             <div className="bg-muted rounded-xl">
               <ul className="list-none flex flex-col py-0">
-                {/* {process.env.NEXT_PUBLIC_ENV === "development" && (
-              <motion.li
-                className="flex items-center gap-2 py-3 rounded-lg"
-                animate={balanceAnimation}
-                initial={{
-                  scale: 1,
-                  x: 0,
-                  backgroundColor: "rgba(0, 0, 0, 0)",
-                }}
-              >
-                <DollarSign />
-                <span>Balance</span>
-                <span className="flex items-center gap-1 bg-button-opacity rounded-full px-2 py-1 text-button">
-                  {user && user.cash_balance?.toLocaleString()} Birr
-                </span>
-                <span className="ms-auto flex items-center gap-1">
-                  <WithdrawDrawer />
-                </span>
-              </motion.li>
-            )} */}
-
-                {/* {isDevelopment && (
-                  <>
-                    <li className="px-2">
-                      <ButtonBase
-                        onClick={() => setOpenAvatarSetting(true)}
-                        className="w-full flex items-center gap-2 py-3"
-                      >
-                        <span className="bg-orange-500 rounded-md size-[25px] flex items-center justify-center">
-                          <Smile
-                            size={20}
-                            className="fill-white text-orange-500"
-                          />
-                        </span>
-                        <span className="font-medium">
-                          {t("profile.profile")}
-                        </span>{" "}
-                        <div className="ms-auto flex items-center gap-1 text-secondary">
-                          <ChevronRight
-                            size={20}
-                            strokeWidth={3}
-                            className={`transition-all duration-300`}
-                          />
-                        </div>
-                      </ButtonBase>
-                    </li>
-                    <div className="h-px bg-border/45 w-[89%] ms-auto" />
-                  </>
-                )} */}
-
                 <li className="px-2">
                   <ButtonBase
                     onClick={() => setOpenCouponDrawer(true)}
@@ -186,17 +136,6 @@ export default function Profile() {
                 </li>
                 <div className="h-px bg-border w-[89%] ms-auto" />
 
-                <li className="flex items-center gap-2 py-3 px-2">
-                  <span className="bg-red-500 rounded-md size-[25px] flex items-center justify-center">
-                    <Ticket size={20} />
-                  </span>
-                  <span className="font-medium">{t("profile.tickets")}</span>{" "}
-                  <div className="ms-auto font-medium pr-2">
-                    {user && user.tickets?.toLocaleString()}
-                  </div>
-                </li>
-                <div className="h-px bg-border w-[89%] ms-auto" />
-
                 <li className="px-2">
                   <LanguageSelector
                     triggerBtnText={`${
@@ -210,30 +149,6 @@ export default function Profile() {
                     activeOption={locale}
                   />
                 </li>
-                {/* <div className="h-px bg-border w-[89%] ms-auto" />
-
-                <li className="px-2">
-                  <ButtonBase
-                    onClick={() =>
-                      telegram?.openTelegramLink(
-                        `https://t.me/${SUPPORT_BOT}`
-                      )
-                    }
-                    className="w-full flex items-center gap-2 py-3"
-                  >
-                    <span className="bg-gray-500 rounded-md size-[25px] flex items-center justify-center">
-                      <MessageCircleMore className="fill-white text-gray-500" />
-                    </span>
-                    <span className="font-medium">{t("profile.question")}</span>{" "}
-                    <div className="ms-auto flex items-center gap-1 text-secondary">
-                      <ChevronRight
-                        size={20}
-                        strokeWidth={3}
-                        className={`transition-all duration-300`}
-                      />
-                    </div>
-                  </ButtonBase>
-                </li> */}
               </ul>
             </div>
 

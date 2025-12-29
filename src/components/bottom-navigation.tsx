@@ -9,7 +9,7 @@ import { Link2Icon, User2 } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { IconHome } from "@tabler/icons-react";
 
-const Footer = () => {
+const BottomNavigation = () => {
   const { t } = useLanguage();
   const pathname = usePathname();
   const telegram = useTelegram();
@@ -130,4 +130,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default BottomNavigation;

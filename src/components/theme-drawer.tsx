@@ -123,7 +123,7 @@ export default function ThemeDrawer({ open, setOpen }: ThemeDrawerProps) {
                     />
                   </ButtonBase>
                   <p className="text-center text-secondary ms-2 mt-2 text-sm">
-                    {t(`profile.theme.${themeKey}`)}
+                    {config.name}
                     {themeKey === DEFAULT_THEME && " (Default)"}
                   </p>
                 </div>
