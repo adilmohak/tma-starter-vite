@@ -1,0 +1,21 @@
+{
+  "editor.formatOnSave": true,
+  "files.associations": {
+    "*.gltf": "plaintext"
+  },
+  "[plaintext]": {
+    "editor.formatOnSave": false
+  },
+  "files.readonlyInclude": {
+    "{**/.c4z/.extsrcs/*.PROTSYM.cbl,**/.c4z/.extsrcs/*.PROTSYM.listing}": true
+  },
+  "liveSassCompile.settings.includeItems": ["/**/src/app/globals.scss"],
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "compressed",
+      "extensionName": ".css",
+      "savePath": "/src/app",
+      "savePathReplacementPairs": null
+    }
+  ]
+}
