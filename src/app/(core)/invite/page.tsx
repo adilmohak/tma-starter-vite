@@ -35,7 +35,7 @@ const mockReferrals = {
       last_name: "One",
       status: "credited",
       bonus_amount: 50,
-      profile: { compressed_url: "/default-avatar.webp" },
+      profile: { compressed_url: "/users/user-01.png" },
     },
     {
       id: "ref_2",
@@ -44,7 +44,7 @@ const mockReferrals = {
       last_name: "Two",
       status: "credited",
       bonus_amount: 50,
-      profile: { compressed_url: "/default-avatar.webp" },
+      profile: { compressed_url: "/users/user-02.png" },
     },
     {
       id: "ref_3",
@@ -53,7 +53,7 @@ const mockReferrals = {
       last_name: "User",
       status: "pending",
       bonus_amount: 0,
-      profile: { compressed_url: "/default-avatar.webp" },
+      profile: { compressed_url: "/users/user-03.png" },
     },
   ],
 };
