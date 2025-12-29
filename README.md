@@ -43,17 +43,17 @@ src/
 ├── components/
 │   ├── effects/              # Visual effects (fireworks, particles)
 │   ├── invite/               # Invite feature components
-│   ├── layout/               # Layout components (PreLoader, etc.)
-│   ├── telegram/             # Telegram-specific (BackButton)
+│   ├── layout/               # Layout components (splash-screen, etc.)
+│   ├── telegram/             # Telegram-specific (back-button-handler)
 │   └── ui/                   # Reusable UI components (shadcn-style)
 │
 ├── context/                  # React contexts
-│   ├── authContext.tsx       # Authentication state
-│   └── TelegramFullscreenContext.tsx
+│   ├── auth-context.tsx      # Authentication state
+│   └── telegram-fullscreen-context.tsx
 │
 ├── hooks/                    # Custom React hooks
-│   ├── useTelegram.ts        # Telegram WebApp hook
-│   ├── useLanguage.ts        # i18n hook
+│   ├── use-telegram.ts       # Telegram WebApp hook
+│   ├── use-language.ts       # i18n hook
 │   └── ...
 │
 ├── lib/                      # Utilities and helpers
@@ -65,18 +65,16 @@ src/
 │   └── utils.ts              # Utility functions
 │
 ├── providers/                # Provider components
-│   └── QueryProvider.tsx     # React Query provider
-│
-├── schema/                   # Zustand stores
-│   └── general.ts            # Global state (drawers, modals, etc.)
+│   └── query-provider.tsx    # React Query provider
 │
 ├── services/                 # API services
 │   ├── api.ts                # Base API client
-│   └── general.ts            # API endpoints
+│   └── user-api.ts           # User API endpoints
 │
-└── store/                    # Additional stores
-    ├── language.ts           # Language store
-    └── themeStore.ts         # Theme store
+└── store/                    # Zustand stores
+    ├── language.ts           # Language preferences
+    ├── theme-store.ts        # Theme state
+    └── ui-store.ts           # UI state (drawers, modals)
 ```
 
 ## Configuration
@@ -98,9 +96,9 @@ NEXT_PUBLIC_ENV=development
 
 ## Key Patterns
 
-### Telegram BackButton
+### Telegram Back Button Handler
 
-The `BackButton` component automatically handles:
+The `back-button-handler` component automatically handles:
 
 - Closing open drawers (LIFO order)
 - Closing embedded views
@@ -109,6 +107,8 @@ The `BackButton` component automatically handles:
 ### Drawer State Management
 
 ```tsx
+import { useDrawerState } from "@/store/ui-store";
+
 // Register drawer with back button handler
 const { registerDrawer, unregisterDrawer } = useDrawerState();
 
@@ -123,6 +123,8 @@ useEffect(() => {
 ### Translations
 
 ```tsx
+import { useLanguage } from "@/hooks/use-language";
+
 const { t } = useLanguage();
 return <h1>{t("invite.header_title")}</h1>;
 ```
