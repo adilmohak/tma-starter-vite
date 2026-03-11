@@ -1,5 +1,3 @@
-"use client";
-
 import {
   createContext,
   useContext,
@@ -9,7 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
 import { isAuthenticated, signInUser } from "@/lib/utils";
 import { getAccessToken, getUser } from "@/services/user-api";
 import { useTelegram } from "@/hooks/use-telegram";
@@ -29,11 +27,11 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   // We don't use telegram auth on locale environment
   const [user, setUser] = useState<any>(null);
-  const isDevelopment = process.env.NODE_ENV === "development";
+  const isDevelopment = import.meta.env.DEV;
   const [isLoggedIn, setIsLoggedIn] = useState(
     !isDevelopment ? false : isAuthenticated()
   );
-  const router = useRouter();
+  const navigate = useNavigate();
   const telegram = useTelegram();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -75,12 +73,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } finally {
       setIsLoading(false);
     }
-  }, [telegram]);
+  }, [telegram, isDevelopment]);
 
   useEffect(() => {
     setIsLoading(true);
     handleTelegramAuth();
-  }, [handleTelegramAuth, router, telegram]);
+  }, [handleTelegramAuth, navigate, telegram]);
 
   const value = useMemo(
     () => ({
@@ -91,7 +89,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser,
       refetchUser,
     }),
-    [isLoggedIn, isLoading, handleTelegramAuth]
+    [isLoggedIn, isLoading, handleTelegramAuth, user, refetchUser]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

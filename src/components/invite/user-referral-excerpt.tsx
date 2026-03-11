@@ -1,8 +1,5 @@
-"use client";
-
 import { toHumanReadable } from "@/lib/typography";
-import Image from "next/image";
-import { Link } from "next-view-transitions";
+import { Link } from "react-router-dom";
 import { useLanguage } from "@/hooks/use-language";
 
 type UserProps = {
@@ -25,15 +22,14 @@ const UserReferralExcerpt = ({
   const { t } = useLanguage();
 
   return link ? (
-    <Link href={link} className="flex items-center justify-between">
+    <Link to={link} className="flex items-center justify-between">
       <div className="flex items-center gap-4 w-full outline-none">
-        <Image
+        <img
           src={img}
           alt={caption ?? ""}
           width={44}
           height={44}
           className="rounded-full"
-          priority
         />
         <div className="flex flex-col justify-start">
           <h3 className="text-sm font-semibold leading-snug capitalize max-w-40 overflow-hidden text-ellipsis text-nowrap">
@@ -49,13 +45,12 @@ const UserReferralExcerpt = ({
   ) : (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-4 w-full outline-none">
-        <Image
+        <img
           src={img}
           alt={caption ?? ""}
           width={44}
           height={44}
           className="rounded-full"
-          priority
         />
         <div className="flex flex-col justify-start">
           <h3 className="text-sm font-semibold leading-snug capitalize max-w-40 overflow-hidden text-ellipsis text-nowrap">
@@ -72,4 +67,3 @@ const UserReferralExcerpt = ({
 };
 
 export default UserReferralExcerpt;
-

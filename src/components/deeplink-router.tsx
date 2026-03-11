@@ -1,7 +1,5 @@
-"use client";
-
 import { useEffect, useRef, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useTelegram } from "@/hooks/use-telegram";
 
 interface DeeplinkRouterProps {
@@ -126,8 +124,9 @@ const DeeplinkRouter: React.FC<DeeplinkRouterProps> = ({
   children,
   onRoutingComplete,
 }) => {
-  const router = useRouter();
-  const pathname = usePathname();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const pathname = location.pathname;
   const hasProcessedRef = useRef(false);
   const [shouldRender, setShouldRender] = useState(false);
   const telegram = useTelegram();
@@ -161,14 +160,14 @@ const DeeplinkRouter: React.FC<DeeplinkRouterProps> = ({
       if (targetRoute && targetRoute !== pathname) {
         // Navigate to the target route
         console.log("Redirecting to:", targetRoute);
-        router.push(targetRoute);
+        navigate(targetRoute);
       }
     }
 
     // Allow rendering after processing or if no redirect is needed
     console.log("Rendering children");
     setShouldRender(true);
-  }, [telegram, startApp, pathname, router]);
+  }, [telegram, startApp, pathname, navigate]);
 
   // Separate effect to handle routing completion notification
   useEffect(() => {

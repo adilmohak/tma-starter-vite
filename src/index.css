@@ -251,7 +251,7 @@ color-scheme: light;
     @apply border-border;
   }
   body {
-    @apply bg-background text-primary;
+    @apply bg-background text-primary font-sans;
   }
 }
 

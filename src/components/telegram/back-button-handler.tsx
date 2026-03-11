@@ -1,6 +1,4 @@
-"use client";
-
-import { usePathname, useRouter } from "next/navigation";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 import TelegramBackButton from "./telegram-back-button";
 import { isActive } from "@/lib/utils";
@@ -18,8 +16,9 @@ import { useTelegram } from "@/hooks/use-telegram";
  * 3. Navigate back or close app (depending on current page)
  */
 const BackButtonHandler = () => {
-  const pathname = usePathname();
-  const router = useRouter();
+  const location = useLocation();
+  const pathname = location.pathname;
+  const navigate = useNavigate();
   const { webViewUrl, setWebViewUrl } = useShowEmbeddedView();
   const { closeTopDrawer, openDrawers } = useDrawerState();
   const telegram = useTelegram();
@@ -37,7 +36,7 @@ const BackButtonHandler = () => {
     if (isActive("/", pathname)) {
       telegram?.close();
     } else {
-      router.back();
+      navigate(-1);
     }
   }, [
     closeTopDrawer,
@@ -46,11 +45,10 @@ const BackButtonHandler = () => {
     setWebViewUrl,
     pathname,
     telegram,
-    router,
+    navigate,
   ]);
 
   return <TelegramBackButton onClickHandler={onClickHandler} />;
 };
 
 export default BackButtonHandler;
-

@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/drawer";
 import { useState, useMemo, useEffect } from "react";
 import { Button } from "./ui/button";
-import Image from "next/image";
 import { createAvatar } from "@dicebear/core";
 import * as styleLorelei from "@dicebear/lorelei";
 import ButtonBase from "./ui/button-base";
@@ -135,7 +134,7 @@ export default function AvatarCustomizer({
       seed: user?.avatar?.image_url?.split("seed=")[1] || randomSeed,
       backgroundColor:
         user?.avatar?.color?.replace("#", "") ||
-        avatarConfigData?.colors[0]?.replace("#", "") ||
+        avatarConfigData?.colors?.[0]?.replace("#", "") ||
         "3b82f6",
     });
   };
@@ -262,7 +261,7 @@ export default function AvatarCustomizer({
               animate={{ scale: 1 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <Image
+              <img
                 src={generateAvatarUrl}
                 alt="Avatar Preview"
                 width={120}
@@ -356,7 +355,7 @@ export default function AvatarCustomizer({
                           : "hover:scale-105"
                       }`}
                     >
-                      <Image
+                      <img
                         src={avatar.url}
                         alt={`Lorelei avatar ${avatar.id}`}
                         width={50}

@@ -1,6 +1,5 @@
-"use client";
-
 import { useEffect, useState } from "react";
+import { Routes, Route, Outlet } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider";
 import SplashScreen from "@/components/layout/splash-screen";
 import FireworkAnimation from "@/components/effects/firework-animation";
@@ -11,11 +10,15 @@ import BackButtonHandler from "@/components/telegram/back-button-handler";
 import { TelegramFullscreenProvider } from "@/context/telegram-fullscreen-context";
 import { Toaster } from "@/components/ui/sonner";
 
-interface ProvidersProps {
-  children: React.ReactNode;
-}
+// Pages
+import HomePage from "@/pages/home";
+import InvitePage from "@/pages/invite";
+import ProfilePage from "@/pages/profile";
 
-export default function Providers({ children }: ProvidersProps) {
+// Layouts
+import CoreLayout from "@/layouts/core-layout";
+
+function Providers({ children }: { children: React.ReactNode }) {
   const [isDomLoaded, setIsDomLoaded] = useState(false);
 
   useEffect(() => {
@@ -53,3 +56,20 @@ export default function Providers({ children }: ProvidersProps) {
     </ThemeProvider>
   );
 }
+
+function App() {
+  return (
+    <Providers>
+      <Routes>
+        {/* Core routes with bottom navigation */}
+        <Route element={<CoreLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/invite" element={<InvitePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+        </Route>
+      </Routes>
+    </Providers>
+  );
+}
+
+export default App;

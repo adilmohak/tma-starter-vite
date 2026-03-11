@@ -1,7 +1,5 @@
-"use client";
-
 import { ChevronRight, Palette, Smile } from "lucide-react";
-import { PremiumStar, Ticket } from "@/components/ui/icons";
+import { PremiumStar } from "@/components/ui/icons";
 import { useState, useEffect } from "react";
 import { locales } from "@/lib/constants";
 import { getLocaleName } from "@/lib/utils";
@@ -28,7 +26,7 @@ const mockUser = {
   },
 };
 
-export default function Profile() {
+export default function ProfilePage() {
   const { locale, t, setLocale } = useLanguage();
   const user = mockUser;
   const localeName = getLocaleName(locale) ?? "English";

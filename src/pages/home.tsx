@@ -1,5 +1,3 @@
-"use client";
-
 import SupportCard from "@/components/support-card";
 
 export default function HomePage() {

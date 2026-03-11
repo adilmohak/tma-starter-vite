@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { Check, Clock, Copy, DollarSign } from "lucide-react";
 import { copyToClipboard, getUserDisplayName, notify } from "@/lib/utils";
@@ -58,7 +56,7 @@ const mockReferrals = {
   ],
 };
 
-export default function InviteLeaderboard() {
+export default function InvitePage() {
   const user = mockUser;
   const isLoadingUser = false;
   const telegram = useTelegram();

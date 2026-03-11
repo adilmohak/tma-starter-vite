@@ -1,6 +1,3 @@
-"use client";
-
-import Image from "next/image";
 import ButtonBase from "@/components/ui/button-base";
 import { ArrowRight } from "lucide-react";
 import { useTelegram } from "@/hooks/use-telegram";
@@ -27,7 +24,7 @@ export default function SupportCard() {
               className="flex items-center gap-2 w-full outline-none disabled:opacity-50"
             >
               <span className="inline-flex items-center justify-center rounded-full min-w-[36px] min-h-[36px]">
-                <Image
+                <img
                   src="/support-duck.jpg"
                   width={36}
                   height={36}

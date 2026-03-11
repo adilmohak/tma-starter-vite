@@ -1,17 +1,15 @@
-"use client";
-
 import { cn, isActive } from "@/lib/utils";
-import { usePathname } from "next/navigation";
+import { useLocation, Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { useTelegram } from "@/hooks/use-telegram";
-import { Link } from "next-view-transitions";
 import { Link2Icon, User2 } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { IconHome } from "@tabler/icons-react";
 
 const BottomNavigation = () => {
   const { t } = useLanguage();
-  const pathname = usePathname();
+  const location = useLocation();
+  const pathname = location.pathname;
   const telegram = useTelegram();
 
   const vibrateOnClick = () => {
@@ -28,7 +26,7 @@ const BottomNavigation = () => {
           asChild
         >
           <Link
-            href="/invite"
+            to="/invite"
             className="flex flex-col"
             onClick={vibrateOnClick}
           >
@@ -63,7 +61,7 @@ const BottomNavigation = () => {
           className="group flex flex-col h-auto pt-2 w-full rounded-none focus:bg-transparent hover:bg-transparent"
           asChild
         >
-          <Link href="/" className="flex flex-col" onClick={vibrateOnClick}>
+          <Link to="/" className="flex flex-col" onClick={vibrateOnClick}>
             <span
               className={cn(
                 "size-[35px] min-w-[35px] flex items-center justify-center rounded-full bg-muted-light",
@@ -96,7 +94,7 @@ const BottomNavigation = () => {
           asChild
         >
           <Link
-            href="/profile"
+            to="/profile"
             className="flex flex-col"
             onClick={vibrateOnClick}
           >

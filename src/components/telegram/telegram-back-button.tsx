@@ -1,7 +1,5 @@
-"use client";
-
 import { useTelegram } from "@/hooks/use-telegram";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 
 interface TelegramBackButtonProps {
@@ -15,7 +13,7 @@ const TelegramBackButton: React.FC<TelegramBackButtonProps> = ({
   back,
   disabled = false,
 }) => {
-  const router = useRouter();
+  const navigate = useNavigate();
   const telegram = useTelegram();
   const currentHandlerRef = useRef<(() => void) | undefined>(undefined);
   const isSetupRef = useRef(false);
@@ -29,9 +27,9 @@ const TelegramBackButton: React.FC<TelegramBackButtonProps> = ({
       if (onClickHandler) {
         onClickHandler();
       } else if (back) {
-        router.back();
+        navigate(-1);
       } else {
-        router.replace("/");
+        navigate("/", { replace: true });
       }
     };
 
@@ -55,10 +53,9 @@ const TelegramBackButton: React.FC<TelegramBackButtonProps> = ({
       BackButton.hide();
       isSetupRef.current = false;
     };
-  }, [telegram, router, onClickHandler, back, disabled]);
+  }, [telegram, navigate, onClickHandler, back, disabled]);
 
   return null;
 };
 
 export default TelegramBackButton;
-

@@ -62,7 +62,7 @@ export const NOTIFICATION_CONFIG = {
   BUTTON_TEXT: "Claim Bonus",
 };
 
-export const isDevelopment = process.env.NEXT_PUBLIC_ENV === "development";
+export const isDevelopment = import.meta.env.VITE_ENV === "development" || import.meta.env.DEV;
 
 export const locales = isDevelopment
   ? [

@@ -6,7 +6,7 @@ const api = {
     queryParams: any = null,
     headers: any = {}
   ) {
-    let url = `${process.env.NEXT_PUBLIC_API_ENDPOINT}/${endpoint}`;
+    let url = `${import.meta.env.VITE_API_ENDPOINT}/${endpoint}`;
 
     if (method === "GET" && queryParams) {
       const queryString = new URLSearchParams(queryParams).toString();
