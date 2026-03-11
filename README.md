@@ -1,16 +1,17 @@
 # Telegram Mini App Starter (TMA Starter)
 
-A production-ready Next.js starter template for building Telegram Mini Apps with TypeScript, Tailwind CSS, and best practices baked in.
+A production-ready Vite + React starter template for building Telegram Mini Apps with TypeScript, Tailwind CSS, and best practices baked in.
 
 ## Features
 
 - **Telegram WebApp SDK** - Full integration with back button handling, theme sync, and fullscreen support
-- **Next.js 15** - App Router with Turbopack for fast development
+- **Vite** - Fast development with HMR and optimized production builds
 - **TypeScript** - Type-safe codebase
 - **Tailwind CSS** - Utility-first styling with dark mode support
 - **i18n** - Built-in multi-language support (English, Amharic, Tigrinya, Oromo)
 - **State Management** - Zustand for global state
 - **React Query** - Data fetching and caching
+- **React Router** - Client-side routing
 - **UI Components** - Pre-built components with shadcn/ui patterns
 - **Animations** - Framer Motion + Lottie support
 
@@ -30,62 +31,67 @@ Open [http://localhost:3000](http://localhost:3000) in Telegram's WebView or bro
 
 ```
 src/
-├── app/                      # Next.js App Router
-│   ├── (core)/               # Main app routes (grouped)
-│   │   ├── invite/           # Invite/referral page
-│   │   ├── profile/          # User profile page
-│   │   ├── layout.tsx        # Core layout with footer
-│   │   └── page.tsx          # Home page
-│   ├── globals.css           # Global styles & CSS variables
-│   ├── layout.tsx            # Root layout
-│   └── providers.tsx         # App-wide providers wrapper
+├── main.tsx                 # App entry point
+├── App.tsx                  # Root component with routes & providers
+├── index.css                # Global styles & CSS variables
+│
+├── pages/                   # Route pages
+│   ├── home.tsx             # Home page
+│   ├── invite.tsx           # Invite/referral page
+│   └── profile.tsx          # User profile page
+│
+├── layouts/
+│   └── core-layout.tsx      # Core layout with footer
 │
 ├── components/
-│   ├── effects/              # Visual effects (fireworks, particles)
-│   ├── invite/               # Invite feature components
-│   ├── layout/               # Layout components (splash-screen, etc.)
-│   ├── telegram/             # Telegram-specific (back-button-handler)
-│   └── ui/                   # Reusable UI components (shadcn-style)
+│   ├── effects/             # Visual effects (fireworks, particles)
+│   ├── invite/              # Invite feature components
+│   ├── layout/              # Layout components (splash-screen, etc.)
+│   ├── telegram/            # Telegram-specific (back-button-handler)
+│   └── ui/                  # Reusable UI components (shadcn-style)
 │
-├── context/                  # React contexts
-│   ├── auth-context.tsx      # Authentication state
+├── context/                 # React contexts
+│   ├── auth-context.tsx     # Authentication state
 │   └── telegram-fullscreen-context.tsx
 │
-├── hooks/                    # Custom React hooks
-│   ├── use-telegram.ts       # Telegram WebApp hook
-│   ├── use-language.ts       # i18n hook
+├── hooks/                   # Custom React hooks
+│   ├── use-telegram.ts      # Telegram WebApp hook
+│   ├── use-language.ts      # i18n hook
 │   └── ...
 │
-├── lib/                      # Utilities and helpers
-│   ├── i18n/                 # Internationalization
-│   │   ├── config.ts         # i18n configuration
-│   │   └── translations/     # Translation files
-│   ├── constants.ts          # App constants
-│   ├── types.ts              # TypeScript types
-│   └── utils.ts              # Utility functions
+├── lib/                     # Utilities and helpers
+│   ├── i18n/                # Internationalization
+│   │   ├── config.ts        # i18n configuration
+│   │   └── translations/    # Translation files
+│   ├── constants.ts         # App constants
+│   ├── types.ts             # TypeScript types
+│   └── utils.ts             # Utility functions
 │
-├── providers/                # Provider components
-│   └── query-provider.tsx    # React Query provider
+├── providers/               # Provider components
+│   └── query-provider.tsx   # React Query provider
 │
-├── services/                 # API services
-│   ├── api.ts                # Base API client
-│   └── user-api.ts           # User API endpoints
+├── services/                # API services
+│   ├── api.ts               # Base API client
+│   └── user-api.ts          # User API endpoints
 │
-└── store/                    # Zustand stores
-    ├── language.ts           # Language preferences
-    ├── theme-store.ts        # Theme state
-    └── ui-store.ts           # UI state (drawers, modals)
+├── store/                   # Zustand stores
+│   ├── language.ts          # Language preferences
+│   ├── theme-store.ts       # Theme state
+│   └── ui-store.ts          # UI state (drawers, modals)
+│
+└── config/
+    └── i18n.ts              # i18n config
 ```
 
 ## Configuration
 
 ### Environment Variables
 
-Create a `.env.local` file:
+Create a `.env` file (or `.env.local`):
 
 ```env
-NEXT_PUBLIC_API_URL=your_api_url
-NEXT_PUBLIC_ENV=development
+VITE_API_ENDPOINT=your_api_url
+VITE_ENV=development
 ```
 
 ### Telegram Bot Setup
@@ -132,9 +138,9 @@ return <h1>{t("invite.header_title")}</h1>;
 ## Scripts
 
 ```bash
-npm run dev       # Development with Turbopack
-npm run build     # Production build
-npm run start     # Start production server
+npm run dev       # Development server with HMR
+npm run build     # TypeScript check + production build
+npm run preview   # Preview production build locally
 npm run lint      # Run ESLint
 ```
 
